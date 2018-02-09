@@ -4,6 +4,7 @@ package restapi
 
 import (
 	"crypto/tls"
+	"log"
 	"net/http"
 
 	errors "github.com/go-openapi/errors"
@@ -39,21 +40,27 @@ func configureAPI(api *operations.SwaggerPgAPI) http.Handler {
 	api.JSONProducer = runtime.JSONProducer()
 
 	api.UserDeleteUserUsernameHandler = user.DeleteUserUsernameHandlerFunc(func(params user.DeleteUserUsernameParams) middleware.Responder {
+		log.Printf("Deleted user %v", params.Username)
 		return middleware.NotImplemented("operation user.DeleteUserUsername has not yet been implemented")
 	})
 	api.CarsGetCarsIDHandler = cars.GetCarsIDHandlerFunc(func(params cars.GetCarsIDParams) middleware.Responder {
+		log.Printf("Get car ID: %v", params.ID)
 		return middleware.NotImplemented("operation cars.GetCarsID has not yet been implemented")
 	})
 	api.UserGetUserUsernameHandler = user.GetUserUsernameHandlerFunc(func(params user.GetUserUsernameParams) middleware.Responder {
+		log.Printf("Get username: %v", params.Username)
 		return middleware.NotImplemented("operation user.GetUserUsername has not yet been implemented")
 	})
 	api.CarsPostCarsHandler = cars.PostCarsHandlerFunc(func(params cars.PostCarsParams) middleware.Responder {
+		log.Printf("Create car with parameter: %v,%v,%v,%v", params.CarSParameters.ID, params.CarSParameters.Name, params.CarSParameters.Status, params.CarSParameters.Price)
 		return middleware.NotImplemented("operation cars.PostCars has not yet been implemented")
 	})
 	api.UserPostUserHandler = user.PostUserHandlerFunc(func(params user.PostUserParams) middleware.Responder {
+		log.Printf("Create user with parameters: %v,%v,%v,%v,%v", params.UserSParameters.ID, params.UserSParameters.Username, params.UserSParameters.FirstName, params.UserSParameters.LastName, params.UserSParameters.Email)
 		return middleware.NotImplemented("operation user.PostUser has not yet been implemented")
 	})
 	api.UserPutUserUsernameHandler = user.PutUserUsernameHandlerFunc(func(params user.PutUserUsernameParams) middleware.Responder {
+		log.Printf("Change user with username %v on username: %v", params.UserSParameters.Username, params.Username)
 		return middleware.NotImplemented("operation user.PutUserUsername has not yet been implemented")
 	})
 
