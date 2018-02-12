@@ -1,0 +1,37 @@
+{
+  "name": "My-Website",
+  "description": "My static website",
+  "version": "1.0.0",
+  "ssh-key": "my-website",
+  "author": "https://github.com/akarasulu",
+  "containers": [ {
+      "hostname": "www",
+      "template": "apache",
+      "peer-criteria": "HTTP-GROUP",
+      "size": "SMALL",
+      "port-mapping": [
+        {
+          "protocol": "http",
+          "domain": "mywebsite.envs.subutai.cloud",
+          "internal-port": "80",
+          "external-port": "80"
+        },
+        {
+          "protocol": "tcp",
+          "domain": "mywebsite.envs.subutai.cloud",
+          "internal-port": "22",
+          "external-port": "4040"
+        }
+      ]
+    }
+  ],
+  "peer-criteria": [ 
+    {
+      "name": "HTTP-GROUP",
+      "max-price": "5",
+      "avg-cpu-load": "50",
+      "min-free-ram": "128",
+      "min-free-disk-space": "10"
+    }
+  ]
+}
